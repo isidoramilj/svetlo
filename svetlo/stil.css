@@ -1,0 +1,674 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  box-sizing: border-box;
+  
+  scroll-behavior: smooth;
+}
+
+html {
+  position: relative;
+  overflow-x: clip;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #261f31;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.694);
+  border-radius: 4px;
+}
+
+
+@font-face {
+  font-family: Starlett;
+  src: url(starllet-regular.otf);
+}
+
+@font-face {
+  font-family: jost;
+  src: url(Jost-VariableFont_wght.ttf);
+}
+
+body {
+  position: relative;
+  font-family: Starlett, serif;
+  color: rgba(255, 255, 255, 0.48);
+  overflow-x: clip;
+  overflow-y: clip;
+}
+
+body.otkljucano {
+  overflow-y: scroll;
+}
+
+/* pozadina */
+
+.bg {
+  height: 9300px;
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  animation: fade 600ms infinite alternate;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg2 {
+  background-image: url("slike/zvezde\ pozadina2.svg");
+}
+
+.bg3 {
+  background-image: url("slike/zvezde\ pozadina3.svg");
+  animation: fade 600ms infinite alternate-reverse;
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+#bg4 {
+  height: 100%;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  animation: none;
+  background-image: url("slike/zvezde\ pozadina2.svg");
+}
+
+#bg4.neaktivno {
+  opacity: 0;
+  visibility: visible;
+}
+
+/* layout */
+
+#homepage {
+  height: 100vh;
+  color: #261f31;
+  background:  #261f31 ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  position: relative;
+  padding: 0 60px;
+  font-size: 80px;
+  text-align: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+#svetlo {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  min-width: 120%;
+  height: 110%;
+  z-index: 20;
+  transform-origin: top left;
+  pointer-events: none;
+  
+  animation-fill-mode: forwards;
+}
+
+@keyframes svetlo {
+  from {transform: scale(1) translate(-50%, 0); opacity: 1; }
+  to {transform: scale(0.2) translate(-50%, 0); opacity: 0.6;}
+}
+
+#prekidac:hover {
+  cursor: pointer;
+  filter: brightness(1.3);
+}
+
+#kal-wrapper {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-image: linear-gradient(180deg, #261f31 0%, #1a1521 100%);
+  position: absolute;
+  inset: 0;
+  height: 9300px;
+  z-index: 5;
+  overflow: clip;
+}
+
+#kalendar {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  padding-top: 70px;
+  width: 100%;
+  height: 9300px;
+  overflow-y: clip;
+  overflow-x: clip;
+}
+
+#kal-wrapper.aktivno {
+  opacity: 1;
+  visibility: visible;
+}
+
+#prekidac {
+  position: absolute;
+  top: 40vh;
+  left: 90%;
+  z-index: 50;
+  transition: 2s;
+}
+
+#kalendar>a {
+  position: fixed;
+  z-index: 1000;
+  top: 85vh;
+  right: 50px;
+  text-decoration: none;
+  color: #C4AD7B;
+  font-size: 50px;
+  font-weight: 300;
+  font-family: jost;
+}
+
+/* meseci */
+
+.mesec-sekcija {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 780px;
+  margin: 0 120px;
+  z-index: 50;
+}
+
+:last-child.mesec-sekcija {
+  margin-bottom: -100px;
+}
+
+.mesec {
+  display: flex;
+  flex-direction: column;
+}
+
+.mesec-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 96px);
+
+  width: fit-content;
+  height: fit-content;
+}
+
+.mesec-grid p {
+  text-align: center;
+  vertical-align: bottom ;
+  font-size: 47px;
+  height: 90px;
+  padding: 20px 0;
+  width: 100%;
+  background-image: url(prekidac1.svg) no-repeat 100% 100%;
+}
+
+h2 {
+  font-size: 56px;
+  padding-bottom: 20px;
+}
+
+:nth-child(odd).mesec-sekcija {
+  flex-direction: row-reverse;
+}
+
+:nth-child(odd).mesec-sekcija .mesec {
+  align-items: flex-end;
+}
+
+.tekst {
+  width: 420px;
+  height: fit-content;
+  padding: 40px;
+  position: relative;
+  color: rgba(255, 255, 255, 0.744);
+  z-index: 60;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  margin-top: 100px;
+}
+
+.tekst p {
+  font-family: jost, sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.blur {
+  position: absolute;
+  z-index: -2;
+  top: -420px;
+  left: -70%;
+  transform: scale(0.7);
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+#avg12 .blur {
+  top: -380px;
+}
+
+.datum-klik {
+  color: #C4AD7B;
+  transition: 0.6s;
+}
+
+.datum-klik:hover {
+  cursor: pointer;
+  filter: brightness(1.5);
+}
+
+.hidden {
+  display: none;
+}
+
+
+/* -------------UKRASI------------- */
+
+
+.ukr {
+  position: absolute;
+  pointer-events: none;
+  z-index: 25;
+}
+
+.jan {
+  left: 70%;
+  bottom: 60%;
+}
+
+.feb {
+  transform: scale(0.9);
+  left: -10%;
+  opacity: 0.7;
+}
+
+.mar {
+  transform: scale(1.3);
+  right: -20%;
+  top: 30%;
+}
+
+.apr {
+  right: 120%;
+  animation: meteor 2s ease-in infinite;
+}
+
+.apr2 {
+  left: 150px;
+  top: 200px;
+  animation: meteor2 1.4s ease-in infinite;
+}
+
+.apr3 {
+  animation: meteor3 1.8s ease-in infinite;
+}
+
+@keyframes meteor {
+  0% {right: 120%; top: 0; opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {right: -200px; top: 190%; opacity: 0;}
+}
+
+@keyframes meteor2 {
+  0% {left:150px ; top: 200px; opacity: 0;}
+  10% {opacity: 1;}
+  35% {opacity: 1;}
+  50% {left: 700px; top: 800px; opacity: 0;}
+  100% {opacity: 0;}
+}
+
+@keyframes meteor3 {
+  0% {left:300px ; top: 20px; opacity: 0;}
+  10% {opacity: 1;}
+  35% {opacity: 1;}
+  50% {left: 1300px; top: 950px; opacity: 0;}
+  100% {opacity: 0;}
+}
+
+.jun {
+  left: 60px;
+  top: 0px;
+  transform: rotate(120deg);
+}
+
+.jul {
+  right: -10px;
+  top: -50px;
+}
+
+.avg {
+  transform: scale(1.4);
+  left: -12%;
+  transition: 0.5s;
+}
+
+.avg:hover {
+  filter: brightness(0.95);
+}
+
+.okt {
+  left: -10%;
+  bottom: 5%;
+}
+
+.nov, .nov2, .nov3 {
+  transform: scaleX(-1);
+}
+
+.nov {
+  right: 120%;
+  animation: meteor4 2s ease-in infinite;
+}
+
+.nov2 {
+  right: 150px;
+  top: 200px;
+  animation: meteor5 1.4s ease-in infinite;
+}
+
+.nov3 {
+  animation: meteor6 1.8s ease-in infinite;
+}
+
+@keyframes meteor4 {
+  0% {left: 120%; top: 0; opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {left: -200px; top: 190%; opacity: 0;}
+}
+
+@keyframes meteor5 {
+  0% {right:150px ; top: 200px; opacity: 0;}
+  10% {opacity: 1;}
+  35% {opacity: 1;}
+  50% {right: 700px; top: 800px; opacity: 0;}
+  100% {opacity: 0;}
+}
+
+@keyframes meteor6 {
+  0% {right:300px ; top: 20px; opacity: 0;}
+  10% {opacity: 1;}
+  35% {opacity: 1;}
+  50% {right: 1300px; top: 950px; opacity: 0;}
+  100% {opacity: 0;}
+}
+
+@media screen and (max-width: 1340px) {
+  .mesec-grid {
+    grid-template-columns: repeat(7, 80px);
+  }
+
+  .mesec-grid p {
+    font-size: 37px;
+    height: 80px;
+    padding: 15px 0;
+  }
+
+  .h2 {
+    font-size: 52px;
+  }
+
+  .mesec-sekcija {
+    margin: 0 5vw;
+  }
+  
+}
+
+@media screen and (max-width:1150px) {
+  h1 {
+    font-size: 65px;
+  }
+
+  #tekst h3 {
+    font-size: 22px;
+  }
+
+  #tekst p {
+    font-size: 16px;
+  }
+
+  img#prekidac {
+    transform: scale(0.9);
+  }
+
+  .mesec-grid {
+    grid-template-columns: repeat(7, 70px);
+  }
+
+  h2 {
+    font-size: 44px;
+  }
+
+  .mesec-grid p {
+    font-size: 34px;
+    height: 70px;
+    padding: 15px 0;
+  }
+}
+ 
+@media screen and (max-width:1020px) {
+  .mesec-sekcija {
+    justify-content: flex-start;
+  }
+
+  .tekst {
+    margin-top: -100px;
+  }
+
+  :last-child.mesec-sekcija {
+  margin-bottom: 100px;
+  }
+
+  :last-child.mesec-sekcija .tekst {
+  margin-top: -200px;
+  }
+
+  #kalendar, #kal-wrapper, .bg {
+    height: 9450px;
+  }
+
+  .ukr {
+    z-index: -2;
+  }
+  
+}
+
+
+@media screen and (max-width:895px) {
+  :nth-child(9).mesec-sekcija {
+    margin-bottom: 100px;
+  }
+
+  h1 {
+    font-size: 50px;
+  }  
+
+  .jun, .jul, .jan {
+    top: unset;
+    bottom: 80%;
+  }
+
+  .jun {
+    left: 0;
+    right: unset;
+  }
+
+  .jul {
+    transform: scale(0.7);
+    left: 0;
+    right: unset;
+  }
+
+  .okt {
+    transform: scale(0.5);
+    left: -70%;
+    bottom: 20%;
+  }
+}
+
+@media screen and (max-width:660px) {
+  .br {
+    display: none;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  #prekidac {
+    left: unset;
+    right: 10px;
+  }
+
+  img#prekidac {
+    transform: scale(0.7);
+  }
+
+  .mesec-sekcija {
+    justify-content: center;
+    margin-bottom: 80px;
+  }
+
+  #kalendar, #kal-wrapper, .bg {
+    height: 10300px;
+  }
+}
+
+@media screen and (max-width:620px) {
+  .mesec-grid p {
+    font-size: 28px;
+    padding: 10px 0;
+    height: 60px;
+  }
+
+  .mesec-grid {
+    grid-template-columns: repeat(7, 60px);
+  }
+
+  .mesec-sekcija {
+    margin-bottom: 0px;
+    height: 650px;
+  }
+
+  #kalendar, #kal-wrapper, .bg {
+    height: 8000px;
+  }
+
+  :last-child.mesec-sekcija .tekst {
+  margin-top: -100px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .okt {
+    transform: scale(0.4);
+    left: -85%;
+  } 
+  
+  .mesec-grid {
+    grid-template-columns: repeat(7, 50px);
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  .mesec-grid p {
+    font-size: 24px;
+    height: 50px;
+    padding: 15px 0;
+  }
+
+  .mesec-sekcija {
+    height: 550px;
+  }
+
+  .tekst p {
+    font-size: 14px
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  #kalendar, #kal-wrapper, .bg {
+    height: 6800px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  h1 {
+    padding-bottom: 150px;
+  }
+
+  #prekidac {
+    top: 50vh;
+  }
+
+  :nth-child(9).mesec-sekcija {
+    margin-bottom: 50px;
+  }
+
+  .avg {
+    transform: scale(0.6) translate(-70%, 80%);
+  }
+
+  .jan {
+    transform: translate(-80%, 120%) scale(0.4);
+  }
+
+  .feb {
+    top: 20%;
+    transform: scale(0.4) translateX(-60%);
+  }
+
+  .mar {
+    transform: translate(30%, 0) scale(0.4);
+  }
+
+  .jul, .jun {
+    transform: scale(0.4) translate(-70%, 250%);
+  }
+  
+  .okt {
+    transform: scale(0.25) translateY(30%);
+    left: -165%;
+  } 
+  
+  .mesec-grid {
+    grid-template-columns: repeat(7, 35px);
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  .mesec-grid p {
+    font-size: 18px;
+    height: 35px;
+    padding: 8px 0;
+  }
+}
