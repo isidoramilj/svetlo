@@ -620,15 +620,7 @@ h3 {
 }
 
 @media screen and (max-width: 470px) {
-  h1 {
-    padding-bottom: 150px;
-  }
-
-  #prekidac {
-    top: 50vh;
-  }
-
-  :nth-child(9).mesec-sekcija {
+   :nth-child(9).mesec-sekcija {
     margin-bottom: 50px;
   }
 
@@ -659,7 +651,7 @@ h3 {
   } 
   
   .mesec-grid {
-    grid-template-columns: repeat(7, 35px);
+    grid-template-columns: repeat(7, 45px);
   }
 
   h2 {
@@ -667,8 +659,9 @@ h3 {
   }
 
   .mesec-grid p {
-    font-size: 18px;
-    height: 35px;
-    padding: 8px 0;
+    font-size: 22px;
+    height: 45px;
+    padding: 15px 0;
   }
+
 }
