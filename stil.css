@@ -687,6 +687,10 @@ h3 {
     left: -55%;
     transform: scale(0.6);
   }
+
+  #kalendar>a {
+    top: 70vh;
+  }
 }
 
 @media screen and (max-width: 420px) {
@@ -706,3 +710,4 @@ h3 {
     left: -80%;
   }
 }
+
