@@ -617,10 +617,23 @@ h3 {
   #kalendar, #kal-wrapper, .bg {
     height: 6800px;
   }
+
+  #svetlo {
+    min-width: unset;
+    width: 210%;
+    height: 95%;
+  }
+
+  h1 {
+    font-size: 36px ;
+    margin-bottom: 55px;
+    padding: 0 80px ;
+  }
 }
 
 @media screen and (max-width: 470px) {
-   :nth-child(9).mesec-sekcija {
+
+  :nth-child(9).mesec-sekcija {
     margin-bottom: 50px;
   }
 
@@ -664,9 +677,7 @@ h3 {
     padding: 15px 0;
   }
 
-  h1 {
-    padding-bottom: 70px;
+  #prekidac {
+    top: 50vh
   }
-
 }
-
