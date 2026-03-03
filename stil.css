@@ -635,7 +635,7 @@ h3 {
 @media screen and (max-width: 470px) {
 
   :nth-child(9).mesec-sekcija {
-    margin-bottom: 50px;
+    margin-bottom: 80px;
   }
 
   .avg {
@@ -681,5 +681,28 @@ h3 {
   #prekidac {
     top: 50vh
   }
+
+  .blur {
+    top: -350px;
+    left: -55%;
+    transform: scale(0.6);
+  }
 }
 
+@media screen and (max-width: 420px) {
+  .blur {
+    top: -350px;
+    left: -72%;
+  }
+
+  :nth-child(9).mesec-sekcija .blur, #avg12 .blur {
+    top: -300px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .blur {
+    top: -350px;
+    left: -80%;
+  }
+}
